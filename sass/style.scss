@@ -16,7 +16,7 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background: $color-dark;
   font-family: $font-text;
   color: $color-dark;
   font-weight: 300;
@@ -40,7 +40,13 @@ body {
     color: lighten($color-dark, 20%);
   }
 }
+/*Logo*/
 
+.logo {
+  padding-top: 50px;
+  height: 200px;
+  color: #fff;
+}
 /* Layout */
 
 .wrapper {
@@ -119,11 +125,5 @@ body {
   }
 }
 
-/*Gallery*/
-.carousel-item{
-  height: 300px;
-    height: 100%;
-    width: 100%;
-  }
-  
-/*PHOTOS*/
+
+
