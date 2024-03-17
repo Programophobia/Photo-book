@@ -64,14 +64,23 @@ printAbout('CLICK FOR MORE')
  const linkBolivia = document.querySelector('.link-Bolivia');
  linkBolivia.setAttribute("href", "https://annapowaska.com/blog/bolivia/");
  linkBolivia.setAttribute("class", "list-group-item list-group-item-action list-group-item-secondary");
+ linkBolivia.setAttribute("id", "link-Bolivia");
  linkBolivia.style.backgroundColor = "rgb(224 244 211)";
  linkBolivia.style.textAlign = "center";
 
+ linkBolivia.setAttribute("onmouseover", "changeToBlueColor()");
+ linkBolivia.setAttribute("onmouseout", "changeToBlueGreen()");
+ const changeLink = document.getElementById("link-Bolivia");
 
+ function changeToBlueColor(){
+    changeLink.style.color = "green";
+    changeLink.style.fontWeight = "bold"
+  }
 
-
-
-
+  function changeToBlueGreen(){
+    changeLink.style.color = "black";
+    changeLink.style.fontWeight = "lighter"
+  }
 
 
 
