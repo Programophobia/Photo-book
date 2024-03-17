@@ -59,11 +59,13 @@ function printAbout(msg) {
     document.getElementById('box-show').appendChild(paragrapf)
 }
 
-printAbout('more here')
+printAbout('CLICK FOR MORE')
 
- const linkBolivia = document.querySelector('.link-Bolivia')
- linkBolivia.setAttribute("href", "https://annapowaska.com/blog/bolivia/")
-
+ const linkBolivia = document.querySelector('.link-Bolivia');
+ linkBolivia.setAttribute("href", "https://annapowaska.com/blog/bolivia/");
+ linkBolivia.setAttribute("class", "list-group-item list-group-item-action list-group-item-secondary");
+ linkBolivia.style.backgroundColor = "rgb(224 244 211)";
+ linkBolivia.style.textAlign = "center";
 
 
 
