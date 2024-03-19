@@ -82,33 +82,32 @@ printAbout('CLICK FOR MORE')
     changeLink.style.fontWeight = "lighter"
   }
 
+ const optArticleTagsSelector = '.post-tags .list';
 
   function generateTags(){
-    /* find all articles */
-  
-    /* START LOOP: for every article: */
-  
-      /* find tags wrapper */
-  
-      /* make html variable with empty string */
-  
-      /* get tags from data-tags attribute */
-  
-      /* split tags into array */
-  
-      /* START LOOP: for each tag */
-  
-        /* generate HTML of the link */
-  
-        /* add generated code to html variable */
-  
-      /* END LOOP: for each tag */
-  
-      /* insert HTML of all the links into the tags wrapper */
-  
-    /* END LOOP: for every article: */
+    const articles = document.querySelectorAll(optArticleSelector);
+    
+    for(let article of articles){
+    
+        const tagWrapper = article.querySelector(optArticleTagsSelector)
+
+        let html = ''
+
+        const tagAttribute = article.getAttribute('data-tags')
+        const singleTag = tagAttribute.split(' ');
+        
+        for(let tag of singleTag){
+            console.log(tag)
+            const linkHtml = '<li><a href="#tag-' + tag + '">' + tag + '</a></li><br>'
+            console.log(linkHtml)
+                
+            html = html + linkHtml;
+            console.log(html)
+            tagWrapper.innerHTML = html;
+   
+        }
   }
-  
+}
   generateTags();
 
 
