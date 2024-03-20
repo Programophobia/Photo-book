@@ -27,11 +27,11 @@ const optArticleSelector = '.post',
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list';
 
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
 
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
-    const articles = document.querySelectorAll(optArticleSelector);
+    const articles = document.querySelectorAll(optArticleSelector + customSelector);
     let html = '';
 
     for(let article of articles){
@@ -111,5 +111,43 @@ printAbout('CLICK FOR MORE')
     
     }
   }
-  
   generateTags();
+
+
+  function tagClickHandler(event){
+  
+    event.preventDefault();
+    
+    const clickedElement = this;
+    const href = clickedElement.getAttribute('href');
+    const tag = href.replace('#tag-', '');
+    console.log(tag)
+    const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
+        
+    for(let activeTagLink of activeTagLinks){
+        activeTagLink.classList.remove('active');
+    
+    }
+        
+    const allTagsLinks = document.querySelectorAll('a[href="' + href + '"]');
+    
+    for(let tagLink of allTagsLinks){
+        
+        tagLink.classList.add('active');
+    
+    }
+   
+    generateTitleLinks('[data-tags~="' + tag + '"]');
+  }
+  
+function addClickListenersToTags(){
+   
+    const allTagLinks = document.querySelectorAll('a[href^="#tag-"]')
+    
+    for(let tagLink of allTagLinks){
+        tagLink.addEventListener('click', tagClickHandler)
+    }
+      
+  }
+  
+  addClickListenersToTags();
