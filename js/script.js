@@ -151,3 +151,19 @@ function addClickListenersToTags(){
   }
   
   addClickListenersToTags();
+
+  function generateAuthors(){
+    const articles = document.querySelectorAll(optArticleSelector);
+    
+    for(let article of articles){
+  
+        const authorWrapper = article.querySelector('.post-author');
+        let html = '';
+        const authorAttribute = article.getAttribute('data-author');
+        const htmlElement = '<a href="#author-">' + authorAttribute + '</a>'
+        html = html + htmlElement;
+        authorWrapper.innerHTML = html;
+        }
+ }
+ 
+ generateAuthors();
