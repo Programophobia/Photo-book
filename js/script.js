@@ -146,8 +146,7 @@ function addClickListenersToTags(){
     
     for(let tagLink of allTagLinks){
         tagLink.addEventListener('click', tagClickHandler)
-    }
-      
+    }    
   }
   
   addClickListenersToTags();
