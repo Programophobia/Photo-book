@@ -86,7 +86,7 @@ printAbout('CLICK FOR MORE')
 
   function generateTags(){
     const articles = document.querySelectorAll(optArticleSelector);
-    let allTags = [];
+    let allTags = {};
 
     for(let article of articles){
         
@@ -106,14 +106,21 @@ printAbout('CLICK FOR MORE')
             console.log(htmlElement)
                     
             html = htmlElement + html;
-             if(allTags.indexOf(htmlElement) == -1){
-              allTags.push(htmlElement)
+             if(!allTags.hasOwnProperty(oneTag)){
+              allTags[oneTag] = 1;
+             } else {
+              allTags[oneTag]++;
              }
         } 
         tagsWrapper.innerHTML = html;
     }
     const tagList = document.querySelector(optTagsListSelector);
-    tagList.innerHTML = allTags.join(' ');
+  
+    let allTagsHtml = '';
+    for(let tag in allTags){
+      allTagsHtml += '<li><a href="#tag-' + tag + '">' + tag + ' ' + '(' + allTags[tag] + ')</a></li>';
+    }
+    tagList.innerHTML = allTagsHtml;
   }
   generateTags();
 
