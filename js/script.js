@@ -8,7 +8,7 @@ function clickHandler(event) {
     const activeGalleries = document.querySelectorAll(optArticleSelector)
     const linkAttribute = clickedElement.getAttribute('href');
     const targetGallery = document.querySelector(linkAttribute)
-    const links = document.querySelectorAll(optTitleListSelector, 'a');
+    const links = document.querySelectorAll(optTitleListSelector);
 
     for(let activeLink of activeLinks){
         activeLink.classList.remove('active')
@@ -25,7 +25,8 @@ function clickHandler(event) {
 const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
-    optArticleTagsSelector = '.post-tags .list';
+    optArticleTagsSelector = '.post-tags .list',
+    optTagsListSelector = '.tags.list'
 
 function generateTitleLinks(customSelector = ''){
 
@@ -85,6 +86,7 @@ printAbout('CLICK FOR MORE')
 
   function generateTags(){
     const articles = document.querySelectorAll(optArticleSelector);
+    let allTags = [];
 
     for(let article of articles){
         
@@ -100,16 +102,18 @@ printAbout('CLICK FOR MORE')
         
         for(let oneTag of splitTag){
             
-            const htmlElement = '<li><a href="#tag-' + oneTag + '">' + oneTag + '</a></li><br>'
+            const htmlElement = '<li><a class="list-group-item list-group-item-action list-group-item-secondary" href="#tag-' + oneTag + '">' + oneTag + '</a></li><br>'
             console.log(htmlElement)
                     
             html = htmlElement + html;
-            
-        }
-        
-    tagsWrapper.innerHTML = html;
-    
+             if(allTags.indexOf(htmlElement) == -1){
+              allTags.push(htmlElement)
+             }
+        } 
+        tagsWrapper.innerHTML = html;
     }
+    const tagList = document.querySelector(optTagsListSelector);
+    tagList.innerHTML = allTags.join(' ');
   }
   generateTags();
 
@@ -201,3 +205,7 @@ function addClickListenersToAuthors(){
 }
 addClickListenersToAuthors();
 console.log(addClickListenersToAuthors);
+
+
+   
+    
