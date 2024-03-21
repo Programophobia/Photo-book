@@ -84,6 +84,22 @@ printAbout('CLICK FOR MORE')
     changeLink.style.fontWeight = "lighter"
   }
 
+
+function calculateTagsParams(tags){
+  const tagsParamsObj = {max: 0, min: 99999};
+for(let tag in tags){
+  if(tags[tag] > tagsParamsObj.max){
+    tagsParamsObj.max = tags[tag]
+  }
+  else if(tags[tag] < tagsParamsObj.min){
+    tagsParamsObj.min = tags[tag]
+  }
+}
+  return tagsParamsObj
+}
+
+
+
   function generateTags(){
     const articles = document.querySelectorAll(optArticleSelector);
     let allTags = {};
@@ -117,6 +133,9 @@ printAbout('CLICK FOR MORE')
     const tagList = document.querySelector(optTagsListSelector);
   
     let allTagsHtml = '';
+
+    const tagsParams = calculateTagsParams(allTags);
+
     for(let tag in allTags){
       allTagsHtml += '<li><a href="#tag-' + tag + '">' + tag + ' ' + '(' + allTags[tag] + ')</a></li>';
     }
