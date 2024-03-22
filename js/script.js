@@ -1,4 +1,7 @@
 'use strict';
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+}
 
 function clickHandler(event) {
 
@@ -39,8 +42,9 @@ function generateTitleLinks(customSelector = ''){
     for(let article of articles){
         const articleId = article.getAttribute('id')
         const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-
-        const linkHTML = '<li><a class="list-group-item list-group-item-action list-group-item-secondary" href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+        const linkHTMLData = {id: articleId, title: articleTitle};
+        const linkHTML = templates.articleLink(linkHTMLData);
+        //const linkHTML = '<li><a class="list-group-item list-group-item-action list-group-item-secondary" href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
         html = html + linkHTML
         titleList.innerHTML = html;   
     }
@@ -186,7 +190,7 @@ function addClickListenersToTags(){
 
   function generateAuthors(){
 
-  const allAuthors = {}
+    const allAuthors = {}
     const articles = document.querySelectorAll(optArticleSelector);
     
     for(let article of articles){
@@ -194,11 +198,10 @@ function addClickListenersToTags(){
         const authorWrapper = article.querySelector('.post-author');
         let html = '';
 
-      
         const authorAttribute = article.getAttribute('data-author');
         const htmlElement = '<a href="#author-' + authorAttribute + '">' + authorAttribute + '</a>'
         if(!allAuthors.hasOwnProperty(authorAttribute)){
-          /* [NEW] add generated code to allTags array */
+        
           allAuthors[authorAttribute] = 1;
         }
         else{
@@ -206,16 +209,13 @@ function addClickListenersToTags(){
         }
         html = html + htmlElement;
         authorWrapper.innerHTML = html;
-        }
-         /* [NEW] find list of tags in right column */
-  const authorList = document.querySelector(optAuthorSelector);
+        } 
+    const authorList = document.querySelector(optAuthorSelector);
 
-  /* [NEW] add html from allTags to tagList */
-  //authorList.innerHTML = allAuthors.join(' ');
-  let allAuthorsHTML = ''
-  for(let author in allAuthors){
-    allAuthorsHTML += '<a class="list-group-item list-group-item-action list-group-item-secondary" href="#author-' + author + '"><span>' + author + ' (' + allAuthors[author] + ') ';
-  }
+    let allAuthorsHTML = ''
+    for(let author in allAuthors){
+       allAuthorsHTML += '<a class="list-group-item list-group-item-action list-group-item-secondary" href="#author-' + author + '"><span>' + author + ' (' + allAuthors[author] + ') ';
+    }
   authorList.innerHTML = allAuthorsHTML
  }
  
@@ -259,3 +259,10 @@ console.log(addClickListenersToAuthors);
 
    
     
+const tplHelloSource = document.querySelector('#template-hello').innerHTML;
+const tplHello = Handlebars.compile(tplHelloSource)
+const dataHello = {firstName: 'John', lastName: 'Smith'};
+let generatedHTML = tplHello(dataHello);
+
+const targetElement = document.body;
+targetElement.insertAdjacentHTML('beforeend', generatedHTML);
