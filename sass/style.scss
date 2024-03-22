@@ -3,7 +3,7 @@
 /* Variables */
 
 $color-light: #fff;
-$color-dark: #444;
+$color-dark: #41464b;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -100,6 +100,18 @@ body {
 
 nav {
   color:white;
+  &.nav-bar-wrapper {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+  }
+}
+
+.sidebar{
+  background-color: inherit;
+  border: solid;
+  border-color: #fff;
+  color: #fff;
 }
 /* Authors */
 

@@ -214,7 +214,7 @@ function addClickListenersToTags(){
   //authorList.innerHTML = allAuthors.join(' ');
   let allAuthorsHTML = ''
   for(let author in allAuthors){
-    allAuthorsHTML += '<a href="#author-' + author + '"><span>' + author + ' (' + allAuthors[author] + ') ';
+    allAuthorsHTML += '<a class="list-group-item list-group-item-action list-group-item-secondary" href="#author-' + author + '"><span>' + author + ' (' + allAuthors[author] + ') ';
   }
   authorList.innerHTML = allAuthorsHTML
  }
