@@ -186,7 +186,7 @@ function addClickListenersToTags(){
 
   function generateAuthors(){
 
-  const allAuthors = []
+  const allAuthors = {}
     const articles = document.querySelectorAll(optArticleSelector);
     
     for(let article of articles){
@@ -197,9 +197,12 @@ function addClickListenersToTags(){
       
         const authorAttribute = article.getAttribute('data-author');
         const htmlElement = '<a href="#author-' + authorAttribute + '">' + authorAttribute + '</a>'
-        if(allAuthors.indexOf(htmlElement) == -1){
+        if(!allAuthors.hasOwnProperty(authorAttribute)){
           /* [NEW] add generated code to allTags array */
-          allAuthors.push(htmlElement);
+          allAuthors[authorAttribute] = 1;
+        }
+        else{
+          allAuthors[authorAttribute]++
         }
         html = html + htmlElement;
         authorWrapper.innerHTML = html;
@@ -208,7 +211,12 @@ function addClickListenersToTags(){
   const authorList = document.querySelector(optAuthorSelector);
 
   /* [NEW] add html from allTags to tagList */
-  authorList.innerHTML = allAuthors.join(' ');
+  //authorList.innerHTML = allAuthors.join(' ');
+  let allAuthorsHTML = ''
+  for(let author in allAuthors){
+    allAuthorsHTML += '<a href="#author-' + author + '"><span>' + author + ' (' + allAuthors[author] + ') ';
+  }
+  authorList.innerHTML = allAuthorsHTML
  }
  
  generateAuthors();
