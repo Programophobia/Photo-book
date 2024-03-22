@@ -118,7 +118,7 @@ for(let tag in tags){
         
         for(let oneTag of splitTag){
             
-            const htmlElement = '<li><a class="list-group-item list-group-item-action list-group-item-secondary" href="#tag-' + oneTag + '">' + oneTag + '</a></li><br>'
+            const htmlElement = '<li><a href="#tag-' + oneTag + '">' + oneTag + '</a></li><br>'
             console.log(htmlElement)
                     
             html = htmlElement + html;
@@ -137,7 +137,7 @@ for(let tag in tags){
     const tagsParams = calculateTagsParams(allTags);
 
     for(let tag in allTags){
-      allTagsHtml += '<li><a href="#tag-' + tag + '">' + tag + ' ' + '(' + allTags[tag] + ')</a></li>';
+      allTagsHtml += '<li><a class="list-group-item list-group-item-action list-group-item-secondary" href="#tag-' + tag + '">' + tag + ' ' + '(' + allTags[tag] + ')</a></li>';
     }
     tagList.innerHTML = allTagsHtml;
   }
