@@ -44,7 +44,6 @@ function generateTitleLinks(customSelector = ''){
         const articleTitle = article.querySelector(optTitleSelector).innerHTML;
         const linkHTMLData = {id: articleId, title: articleTitle};
         const linkHTML = templates.articleLink(linkHTMLData);
-        //const linkHTML = '<li><a class="list-group-item list-group-item-action list-group-item-secondary" href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
         html = html + linkHTML
         titleList.innerHTML = html;   
     }
